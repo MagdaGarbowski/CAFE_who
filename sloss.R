@@ -3,7 +3,7 @@ library(tidyverse)
 library(brms)
 
 
-path <- '/gpfs1/data/idiv_chase/emmala/NutNet'
+path <- "/Users/MagdaGarbowski 1/CAFE_who"
 p.all <- read.csv(paste0(path, '/nutnet_cumulative_time.csv'), header=T,fill=TRUE,sep=",",na.strings=c(""," ","NA","NA ","na"))
 
 p.all$site_code<-as.factor(p.all$site_code)

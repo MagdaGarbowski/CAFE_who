@@ -3,7 +3,7 @@ library(tidyverse)
 library(brms)
 
 
-path <- '/gpfs1/data/idiv_chase/emmala/NutNet'
+path <- "/Users/MagdaGarbowski 1/CAFE_who"
 plot <- read.csv(paste0(path, '/plot.csv'), header=T,fill=TRUE,sep=",",na.strings=c(""," ","NA","NA ","na"))
 
 
@@ -12,8 +12,9 @@ plot$block<-as.factor(plot$block)
 plot$plot<-as.factor(plot$plot)
 
 
- plot <- plot %>% group_by(site_code) %>% filter(year_max >= 3) %>%
- ungroup()
+plot <- plot %>% group_by(site_code) %>% filter(year_max >= 3) %>%
+ungroup()
+
  
  rich.3 <- brm(rich ~ trt * year_trt + (trt * year_trt | site_code/block/plot),
                  data = plot, cores = 4, chains = 4,
