@@ -18,7 +18,7 @@ ungroup()
  
  rich.3 <- brm(rich ~ trt * year_trt + (trt * year_trt | site_code/block/plot),
                  data = plot, cores = 4, chains = 4,
-                 iter=5000, warmup = 1000,
+                 iter=500, warmup = 200,
                  prior = c(
                    prior(normal(8,5), class = Intercept),
                    prior(normal(5,1), class = b, coef = trtNPK),
@@ -26,11 +26,8 @@ ungroup()
                    prior(normal(0,1), class = b, coef = trtNPK:year_trt),
                    prior(normal(0,1), class = sd),
                    prior(normal(0,1), class = sigma)),
-                 control = list(adapt_delta = 0.99)
+                 control = list(adapt_delta = 0.9)
  )
 
 save(rich.3,
      file=Sys.getenv('OFILE'))
-
-
-
